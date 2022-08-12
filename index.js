@@ -25,11 +25,11 @@ function _addABI(abiArray) {
       if (abi.name) {
         const signature = sha3(
           abi.name +
-            "(" +
-            abi.inputs
-              .map(_typeToString)
-              .join(",") +
-            ")"
+          "(" +
+          abi.inputs
+            .map(_typeToString)
+            .join(",") +
+          ")"
         );
         if (abi.type === "event") {
           state.methodIDs[signature.slice(2)] = abi;
@@ -52,13 +52,13 @@ function _removeABI(abiArray) {
       if (abi.name) {
         const signature = sha3(
           abi.name +
-            "(" +
-            abi.inputs
-              .map(function(input) {
-                return input.type;
-              })
-              .join(",") +
-            ")"
+          "(" +
+          abi.inputs
+            .map(function(input) {
+              return input.type;
+            })
+            .join(",") +
+          ")"
         );
         if (abi.type === "event") {
           if (state.methodIDs[signature.slice(2)]) {
@@ -185,7 +185,7 @@ function _decodeLogs(logs) {
         ) {
           // ensure to remove leading 0x for hex numbers
           if (typeof decodedP.value === "string" && decodedP.value.startsWith("0x")) {
-            decodedP.value = new BN(decodedP.value.slice(2), 16).toString(10);
+            decodedP.value = new BN(decodedP.value, 16).toString(10);
           } else {
             decodedP.value = new BN(decodedP.value).toString(10);
           }
